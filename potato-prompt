@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+from os import environ
+from colorsys import hsv_to_rgb
+
+h = int(environ['potatify'])/20
+
+for letter in environ['USER']:
+    r,g,b = [int(256*i) for i in hsv_to_rgb(h,0.99,0.99)]
+    print(f'\001\033[38;2;{r};{g};{b}m\002{letter}\001\033[m\002', end='')
+    h += 0.015
+
+print(f'\001\033[1;94m\002@\001\033[m\033[92m\002{environ["HOSTNAME"]}\001\033[m\002 \001\033[2;3m\002using\001\033[m\002 \001\033[1;93m\002{environ["SHELL"].split("/")[-1]}\001\033[m\002 \001\033[2;3m\002in\001\033[m\002 ', end='')
+
+h = (int(environ['potatify']) + len(environ['USER']))/20
+
+d = environ['PWD'].replace(environ['HOME'], '~')
+for letter in d:
+    r,g,b = [int(256*i) for i in hsv_to_rgb(h,0.99,0.99)]
+    print(f'\001\033[38;2;{r};{g};{b}m\002{letter}\001\033[m\002', end='')
+    h += 0.015
+
+r,g,b = [int(256*i) for i in hsv_to_rgb(int(environ['potatify'])/20, 0.99, 0.99)]
+print(f'\n\001\033[38;2;{r};{g};{b}m\002$\001\033[m\002 ', end='')
