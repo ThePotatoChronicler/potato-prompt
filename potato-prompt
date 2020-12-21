@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from os import environ
 from colorsys import hsv_to_rgb
+from sys import argv
 
 h = int(environ['potatify'])/20
 
@@ -9,7 +10,7 @@ for letter in environ['USER']:
     print(f'\001\033[38;2;{r};{g};{b}m\002{letter}\001\033[m\002', end='')
     h += 0.015
 
-print(f'\001\033[1;94m\002@\001\033[m\033[92m\002{environ["HOSTNAME"]}\001\033[m\002 \001\033[2;3m\002using\001\033[m\002 \001\033[1;93m\002{environ["SHELL"].split("/")[-1]}\001\033[m\002 \001\033[2;3m\002in\001\033[m\002 ', end='')
+print(f'\001\033[1;94m\002@\001\033[m\033[92m\002{environ["HOSTNAME"]}\001\033[m\002 \001\033[2;3m\002using\001\033[m\002 \001\033[1;93m\002{argv[1]}\001\033[m\002 \001\033[2;3m\002in\001\033[m\002 ', end='')
 
 h = (int(environ['potatify']) + len(environ['USER']))/20
 
